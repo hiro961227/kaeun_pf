@@ -6,6 +6,7 @@ const aboutPage = document.querySelector('#about');
 const skillsPage = document.querySelector('#skills');
 const workPage = document.querySelector('#work');
 const itsMe = document.querySelector('.its_me');
+const myPhoto = document.querySelector('.my_photo');
 const introPageH = introPage.getBoundingClientRect().height;
 const aboutPageH = aboutPage.getBoundingClientRect().height;
 const skillsPageH = skillsPage.getBoundingClientRect().height;
@@ -25,8 +26,24 @@ document.addEventListener('scroll', () => {
 //스크롤 퍼센테이지
     progressTag.style.width = `${100 * percentage}%`;
 
+//백그라운드 컬러 애니메이션
+    if(introPageH - 630 >= pixels){
+        bodyTag.style.backgroundColor = "#f7f2ed";
+        bodyTag.style.transition = ".4s";
+    }else{
+        bodyTag.style.backgroundColor = "rgba(247, 242, 237, .35)";
+    }
+
 //it's me 스크롤 조정
-    introPageH - 650 >= pixels ? itsMe.classList.remove("in_about") : itsMe.classList.add("in_about");
+    if(introPageH - 650 >= pixels){
+        itsMe.classList.remove("in_about");
+        itsMe.style.animation = 'pageCg .8s ease-in-out forwards';
+        myPhoto.style.animation = 'circleSize .8s ease-in-out forwards';
+    }else{
+        itsMe.classList.add("in_about");
+        itsMe.style.animation = 'pageCg .8s ease-in-out reverse forwards';
+        myPhoto.style.animation = 'circleSize .8s ease-in-out reverse forwards';
+    }
 
 //it's me 스톱
     pixels >= stophere ? itsMe.classList.add("stop") : itsMe.classList.remove("stop");
@@ -40,14 +57,6 @@ document.addEventListener('scroll', () => {
         document.getElementById('css_bar').value = '75';
         document.getElementById('js_bar').value = '60';
         document.getElementById('ps_bar').value = '70';
-    }
-
-//백그라운드 컬러 애니메이션
-    if(introPageH - 630 >= pixels){
-        bodyTag.style.backgroundColor = "#f7f2ed";
-        bodyTag.style.transition = ".4s";
-    }else{
-        bodyTag.style.backgroundColor = "rgba(247, 242, 237, .35)";
     }
 
 })

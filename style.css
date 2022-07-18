@@ -59,16 +59,12 @@ body{
     flex-wrap: wrap;
     position: absolute;
     top: 5%;
-    left: 50%;
-    transform: translate(-50%,0);
-    transition: 1s;
 }
 
 .its_me .my_photo{
     width:250px; height:250px;
     border-radius: 50%;
     background-color:#ccc;
-    animation: circleSize .8s ease-in-out  forwards;
 }
 
 .its_me .hello{
@@ -84,11 +80,6 @@ body{
 }
 .its_me .contect_me{display: none;}
 
-@keyframes circleSize {
-    0%{width:200px; height:200px;}
-    50%{width:300px; height:300px;}
-    100%{width:250px; height:250px;}
-}
 /* 스크롤후 */
 
 .its_me.in_about{
@@ -98,15 +89,14 @@ body{
     border-radius: 25px;
     margin:auto;
     position: fixed;
-    left: 20%;
+    right: 45%;
     top: 50%;
-    transform: translate(0,-50%);
+    transform: translate(-20%,-50%);
     z-index: 5;
 }
 
 .its_me.in_about .my_photo{
     width: 200px; height: 200px;
-    animation: circleSize2 .8s ease-in-out forwards;
 }
 .its_me.in_about .intro_txt{display: none;}
 .its_me.in_about .contect_me{display: block;}
@@ -117,10 +107,14 @@ body{
     color:#755232;
 }
 
-@keyframes circleSize2 {
-    0%{width:250px; height:250px;}
-    50%{width:300px; height:300px;}
-    100%{width:200px; height:200px;}
+@keyframes pageCg{
+    0%{width: 18%;}
+    100%{width: 100%;}
+}
+@keyframes circleSize{
+    0%{width:200px; height:200px;}
+    50%{width:350px; height:350px;}
+    100%{width:250px; height:250px;}
 }
 
 /* skills에서 고정 */
