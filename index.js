@@ -37,18 +37,15 @@ document.addEventListener('scroll', () => {
 //it's me 스크롤 조정
     if(introPageH - 650 >= pixels){
         itsMe.classList.remove("in_about");
-        itsMe.style.animation = 'pageCg .8s ease-in-out forwards';
-        myPhoto.style.animation = 'circleSize .8s ease-in-out forwards';
     }else{
         itsMe.classList.add("in_about");
-        itsMe.style.animation = 'pageCg .8s ease-in-out reverse forwards';
-        myPhoto.style.animation = 'circleSize .8s ease-in-out reverse forwards';
     }
 
 //it's me 스톱
     pixels >= stophere ? itsMe.classList.add("stop") : itsMe.classList.remove("stop");
 
 //section 스크롤 할때마다 떠오르게
+//itsme정리된후에 경력사항 페이드인 > 스킬 페이드인
 
 //skill에리어 프로그래스바
     const hereStart = pageHeight - skillsPageH * 2.45;

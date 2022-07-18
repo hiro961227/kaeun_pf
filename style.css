@@ -21,14 +21,11 @@ body{
 
 #intro{
     height: 120vh;
-    position: relative;
 }
 #about{
     height: 110vh;
-    position: relative;
 }
 #skills,#work{
-    position: relative;
     height: 100vh;
 }
 #about::after
@@ -58,13 +55,16 @@ body{
     align-items:center;
     flex-wrap: wrap;
     position: absolute;
+    left:0; right: 0;
     top: 5%;
+    transition: .8s;
 }
 
 .its_me .my_photo{
     width:250px; height:250px;
     border-radius: 50%;
     background-color:#ccc;
+    animation: circleSize2 .8s ease-in-out forwards;
 }
 
 .its_me .hello{
@@ -89,14 +89,15 @@ body{
     border-radius: 25px;
     margin:auto;
     position: fixed;
-    right: 45%;
+    right: 40%;
     top: 50%;
-    transform: translate(-20%,-50%);
+    transform: translate(0,-50%);
     z-index: 5;
 }
 
 .its_me.in_about .my_photo{
     width: 200px; height: 200px;
+    animation: circleSize .8s ease-in-out forwards;
 }
 .its_me.in_about .intro_txt{display: none;}
 .its_me.in_about .contect_me{display: block;}
@@ -107,16 +108,17 @@ body{
     color:#755232;
 }
 
-@keyframes pageCg{
-    0%{width: 18%;}
-    100%{width: 100%;}
-}
 @keyframes circleSize{
-    0%{width:200px; height:200px;}
-    50%{width:350px; height:350px;}
-    100%{width:250px; height:250px;}
+    0%{width:250px; height:250px;}
+    50%{width:300px; height:300px;}
+    100%{width:200px; height:200px;}
 }
 
+@keyframes circleSize2{
+    0%{width:200px; height:200px;}
+    50%{width:300px; height:300px;}
+    100%{width:250px; height:250px;}
+}
 /* skills에서 고정 */
 .its_me.stop{
     position: absolute;
