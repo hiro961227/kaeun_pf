@@ -18,6 +18,7 @@ body{
     position: relative;
     overflow-x: hidden;
 }
+body::-webkit-scrollbar{display: none;}
 
 #intro{
     height: 120vh;
@@ -78,7 +79,8 @@ body{
     font-weight: bold;
     transition: .5s;
 }
-.its_me .contect_me{display: none;}
+.its_me .contect_me,
+.its_me .page_nav{display: none;}
 
 /* 스크롤후 */
 
@@ -99,8 +101,25 @@ body{
     width: 200px; height: 200px;
     animation: circleSize .8s ease-in-out forwards;
 }
+.its_me.in_about .hello{padding-top: 20px;}
 .its_me.in_about .intro_txt{display: none;}
-.its_me.in_about .contect_me{display: block;}
+.its_me.in_about .contect_me,
+.its_me.in_about .page_nav{display: block;}
+
+.its_me.in_about .page_nav{
+    margin-bottom: 10px;
+}
+.its_me.in_about .page_nav li{
+    display: inline-block;
+    margin-right:4px;
+}
+.its_me.in_about .page_nav li:last-child{margin-right: 0px;}
+.its_me.in_about .page_nav a{
+    font-size: 14px;
+    color:#755232;
+}
+
+
 .contect_me a{
     color:#333;
 }
@@ -134,8 +153,13 @@ body{
 .about_cont,.skills_cont{
     width: 58%;
     float: right;
-    padding:15vw 0;
+    padding:16.5vw 0;
 }
+
+
+.com_fadein{opacity:0; transition:1.8s;}
+.com_fadein.OP1{opacity:1;}
+
 
 /* 경력사항 에리어 */
 .history_list{
@@ -226,6 +250,11 @@ progress::-webkit-progress-value{
 }
 
 /* 작업물 에리어 */
+#work{position: relative;}
+.work_cont{
+    width: 100%;
+    overflow: hidden;
+}
 .work_cont h2{
     padding: 5vw 0;
     text-align: center;
@@ -234,10 +263,11 @@ progress::-webkit-progress-value{
 .work_list{
     display: flex;
     justify-content: flex-start;
-    overflow: hidden;
-    overflow-x: scroll;
     padding-top: 1vw;
+    transition: .5s;
+    transform: translate(0, 0);
 }
+
 .work_list li{
     width: 100%;
     padding-right: 2vw;
@@ -255,4 +285,48 @@ progress::-webkit-progress-value{
 }
 .work_list li:hover .list_img{
     filter: grayscale(0%);
+}
+
+/* 팝업 */
+.hidden{overflow: hidden;}
+.backon{
+	width: 100%; height: 100%;
+	position: fixed;
+	left: 0; top: 0;
+	z-index: 999;
+	overflow: hidden;
+	background-color: rgba(0,0,0,.4);
+}
+.closeBtn {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    cursor: pointer;
+    position: absolute;
+    right: 1.5%;
+    top: 3%;
+}
+.closeBtn:before, .closeBtn:after {
+	content:' ';
+	position: absolute;
+	left: 45%;
+	height: 100%;
+	width: 11.45%;
+	background-color: #333;
+}
+.closeBtn:before {transform: rotate(45deg);}
+.closeBtn:after {transform: rotate(-45deg);}
+
+.detail_modal{
+	display: none;
+    width: 85%;
+    height: 80vh;
+    border-radius: 15px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1000;
+    background-color: #fff;
+    padding: 50px;
 }
