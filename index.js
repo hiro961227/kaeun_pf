@@ -112,6 +112,71 @@ $("body").on("click", function(event) {
     }
 });
 
+//test
+
+// const cont_1 = document.querySelector('#skills');
+// const cont_2 = document.querySelector('#work');
+// const slider = document.querySelector('.work_list');
+// const s_wid = slider.offsetWidth;
+// const s_li = slider.children;
+// let win_wid = window.innerWidth;
+// let s_move_max = (s_wid - (win_wid / 2)) * -1;
+// let s_pos = 0;
+// let li_pos = 0;
+// let pct = 0;
+
+// slider.addEventListener('mousemove', function(e) {
+//     console.log('ㅇㅇㅇ');
+// })
+
+// if(slider){
+//     console.log('여깁니다.')
+// }else{
+//     console.log('d안빔')
+// }
+// slider.addEventListener('mousewheel',function(){
+//     console.log('gg////')
+// });
+
+// if(window.scrollY == cont_2.offsetTop){
+//     console.log('도착')
+//     cont_2.addEventListener('scroll wheel touchmove mousewheel',function(){
+//         console.log('gg')
+
+//         cont_1.addEventListener('wheel', function (e) {
+//             e.preventDefault;
+//             if (e.deltaY > 0) {
+//                 console.log('이건이때');
+//             }
+//         });
+
+//         cont_2.addEventListener('wheel', function (e) {
+//             e.preventDefault;
+//             if (e.deltaY < 0 && s_pos >= 0) {
+//                 console.log('이건이때22')
+//             }
+//             move_slider(e.deltaY);
+//         });
+
+//         function move_slider(amount) {
+//             console.log('start' + s_pos)
+//             s_pos -= amount;
+//             if (s_pos < s_move_max) {
+//                 s_pos = s_move_max;
+//                 return;
+//             } else if (s_pos > 0) {
+//                 s_pos = 0;
+//                 return;
+//             }
+//             slider.style.transform = `translateX(${s_pos}px)`;
+//             console.log('end' + s_pos)
+
+//         }
+
+//     });
+// }
+
+
 //test2
 var workList = document.querySelector('.work_list');
 var workListItem = document.querySelectorAll('.work_list li');
