@@ -112,105 +112,96 @@ $("body").on("click", function(event) {
     }
 });
 
-//test
 
-// const cont_1 = document.querySelector('#skills');
-// const cont_2 = document.querySelector('#work');
-// const slider = document.querySelector('.work_list');
-// const s_wid = slider.offsetWidth;
-// const s_li = slider.children;
-// let win_wid = window.innerWidth;
-// let s_move_max = (s_wid - (win_wid / 2)) * -1;
-// let s_pos = 0;
-// let li_pos = 0;
-// let pct = 0;
-
-// slider.addEventListener('mousemove', function(e) {
-//     console.log('ㅇㅇㅇ');
-// })
-
-// if(slider){
-//     console.log('여깁니다.')
-// }else{
-//     console.log('d안빔')
-// }
-// slider.addEventListener('mousewheel',function(){
-//     console.log('gg////')
-// });
-
-// if(window.scrollY == cont_2.offsetTop){
-//     console.log('도착')
-//     cont_2.addEventListener('scroll wheel touchmove mousewheel',function(){
-//         console.log('gg')
-
-//         cont_1.addEventListener('wheel', function (e) {
-//             e.preventDefault;
-//             if (e.deltaY > 0) {
-//                 console.log('이건이때');
-//             }
-//         });
-
-//         cont_2.addEventListener('wheel', function (e) {
-//             e.preventDefault;
-//             if (e.deltaY < 0 && s_pos >= 0) {
-//                 console.log('이건이때22')
-//             }
-//             move_slider(e.deltaY);
-//         });
-
-//         function move_slider(amount) {
-//             console.log('start' + s_pos)
-//             s_pos -= amount;
-//             if (s_pos < s_move_max) {
-//                 s_pos = s_move_max;
-//                 return;
-//             } else if (s_pos > 0) {
-//                 s_pos = 0;
-//                 return;
-//             }
-//             slider.style.transform = `translateX(${s_pos}px)`;
-//             console.log('end' + s_pos)
-
-//         }
-
-//     });
-// }
-
-
-//test2
+//work 리스트 클론 및 가로스크롤
 var workList = document.querySelector('.work_list');
 var workListItem = document.querySelectorAll('.work_list li');
 var move = 0;
+var listCount = workListItem.length,
+    listWid = 300,
+    listMargin = 40;
+
 
 $('.work_list').hover(function(){
     bodyTag.style.overflow = "hidden";
     document.addEventListener('scroll mousewheel',function(e){
         e.preventDefault();
-    })
+})
 },function(){
     bodyTag.style.overflow = "auto";
     document.addEventListener('scroll mousewheel',function(e){
         e.preventDefault();
-    })
+})
 });
-workListItem.forEach(function(el, idx){
-    el.addEventListener('mousewheel',function(e){
+
+makeClone();
+function makeClone(){
+    for(var i=0; i<listCount; i++){
+        var cloneList = workListItem[i].cloneNode(true);
+        cloneList.classList.add('clone');
+        workList.appendChild(cloneList);
+    }
+    for(var i = listCount -1; i >=0; i-- ){
+        var cloneList = workListItem[i].cloneNode(true);
+        cloneList.classList.add('clone');
+        workList.prepend(cloneList);
+    }
+    updateWid(); //클론한 넓이값
+    setInitialPos(); //중간으로 이동
+    setTimeout(function(){
+        workList.classList.add('moveAni');
+    }, 100);
+}
+function updateWid(){
+    var currentList = document.querySelectorAll('.work_list li');
+    var newListCount = currentList.length;
+
+    var newWid = (listWid + listMargin) * newListCount - listMargin + 'px';
+    workList.style.width = newWid;
+}
+function setInitialPos(){
+    var initialTranslateValue = -(listWid + listMargin) * listCount;
+    workList.style.transform = 'translate('+initialTranslateValue+'px,45%)';
+}
+
+workList.addEventListener('mousewheel',function(e){
         if(e.wheelDelta > 0){
             //up
             try{move = el.previousElementSibling.offsetLeft;
-                //여기에 이전 콘텐츠 어팬드
             }
-            catch{}
+            catch{
+                moveSlide(move - 1);
+            }
         }else{
             //down
             try{move = el.nextElementSibling.offsetLeft;
-                //여기에 다음 콘텐츠 어팬드
             }
-            catch{}
+            catch{
+                moveSlide(move + 1);
+            }
             finally{}
         }
-        workList.style.transform = "translateX(-"+move+"px)";
     });
-});
 
-//콘텐츠 추가
+//버튼일경우
+// nextBtn.addEventListener('click',function(){
+//     moveSlide(move + 1);
+// })
+// prevBtn.addEventListener('click',function(){
+//     moveSlide(move - 1);
+// })
+function moveSlide(num){
+    workList.style.left = -num * (listWid + listMargin) + 'px';
+    move = num;
+
+    if(move == listCount || move == -listCount){
+        setTimeout(function(){
+            workList.classList.remove('moveAni');
+            workList.style.left = '0px';
+            move = 0;
+        }, 500);
+        setTimeout(function(){
+            workList.classList.add('moveAni');
+        }, 600);
+    }
+}
