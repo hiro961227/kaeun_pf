@@ -9,6 +9,7 @@ body,html,ul,ol,li,div,section,article,p,span,img,h1,h2,h3,h4,h5,h6{
 }
 ul,ol,li{list-style: none;}
 a,img{display: inline-block;}
+img{max-width: 100%;}
 a{text-decoration: none;}
 html{font-size: 62.5%;}
 body{
@@ -31,6 +32,16 @@ body::-webkit-scrollbar{display: none;}
 .fwB{font-weight: bold;}
 .fs18{font-size: 1.8rem;}
 .fs14{font-size: 1.4rem;}
+
+.pb15{padding-bottom: 15px;}
+
+.clearFix::after{
+    content:'';
+    display: block;
+    clear: both;
+}
+.fl{float: left;}
+.fr{float:right;}
 
 
 #intro{
@@ -334,7 +345,11 @@ progress::-webkit-progress-value{
 
 .list_img{
     width: 300px; height: 500px;
-    background-color: #c2aa93;
+    /* background-color: #c2aa93; */
+    /* background: url(./img/main_img/work_img05.png) no-repeat 50% 0%; */
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    background-size: 60vw;
     filter: grayscale(100%);
     transition: .5s;
 }
@@ -388,4 +403,85 @@ progress::-webkit-progress-value{
     z-index: 1000;
     background-color: #fff;
     padding: 50px;
+}
+
+.detail_main_cont h2{
+    padding-bottom:75px;
+}
+.work_event{
+    width: 45%;
+    height: 600px;
+    text-align: center;
+}
+.mokup_img_top{
+    max-width: 600px;
+    margin:auto;
+    font-size: 0;
+    z-index: 5;
+    /* background: url(./img/main_img/work_img05.png) no-repeat; */
+    background-repeat: no-repeat;
+    background-size: 99%;
+    background-position: 0 0;
+    transition: 8s ease-in-out;
+}
+.mokup_img_top:hover{
+    background-position: 0 100%;
+}
+.mokup_img_bottom{
+    z-index: -5;
+    font-size: 0;
+}
+
+.link_btn_area{
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+.link_btn_area li{
+    margin-right:50px;
+}
+.link_btn_area li:last-child{margin-right: 0;}
+.link_btn_area li a{
+    font-size: 1.8rem;
+    color:#fff;
+    font-weight: bold;
+    padding:10px 20px;
+    background-color: #d1b1a2;
+    transition: .3s;
+}
+
+.link_btn_area li a:hover{
+    background-color: #755232;
+}
+
+
+.work_comment{
+    width: 50%;
+    height: 600px;
+    overflow-y: scroll;
+    text-align: left;
+}
+.work_comment::-webkit-scrollbar {width: 5px;}
+.work_comment::-webkit-scrollbar-track {background: #f7f2ed;}
+.work_comment::-webkit-scrollbar-thumb {
+    background: #755232;
+    border-radius: 10px;
+}
+
+.thisPage {
+    padding-right: 10px;
+}
+.thisPage li{
+    line-height: 1.75;
+}
+.refer li{
+    list-style: inside;
+    padding-left: 1em;
+}
+
+.code_area{padding-top:15px;}
+.code_main{
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
 }
