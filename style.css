@@ -422,7 +422,7 @@ progress::-webkit-progress-value{
     background-repeat: no-repeat;
     background-size: 99%;
     background-position: 0 0;
-    transition: 8s ease-in-out;
+    transition: 10s;
 }
 .mokup_img_top:hover{
     background-position: 0 100%;
@@ -456,7 +456,7 @@ progress::-webkit-progress-value{
 
 
 .work_comment{
-    width: 50%;
+    width: 53%;
     height: 600px;
     overflow-y: scroll;
     text-align: left;
@@ -469,7 +469,7 @@ progress::-webkit-progress-value{
 }
 
 .thisPage {
-    padding-right: 10px;
+    padding-right:40px;
 }
 .thisPage li{
     line-height: 1.75;

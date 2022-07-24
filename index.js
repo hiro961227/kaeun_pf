@@ -115,15 +115,13 @@ $.ajax({
                 var codeImgSrc = contentsData[i].codeImgSrc;
                 var codeTxt = contentsData[i].codeTxt;
 
+                if(no <= contentsData.length + 1){
+                    //리스트
+                    workListArea += "<li class='"+no+"'><div class='list_img' style='background-image: url("+imgSrc+");'></div>"
+                    workListArea += "<p class='list_name'>"+title+"</p></li>";
 
-                workListArea += "<li class='"+no+"'><div class='list_img' style='background-image: url("+imgSrc+");'></div>"
-                workListArea += "<p class='list_name'>"+title+"</p></li>";
-
-                $('ul.work_list').append(workListArea);
-
-            $('.work_list li').eq(i).on("click",function(){
-                console.log($(this));
-
+                    $('ul.work_list').append(workListArea);
+                }
 
                 modalArea = "<div id='PF_popup' class='detail_modal no_"+no+"'><div class='closeBtn'></div><div class='detail_main_cont'>";
                 modalArea += "<h2>"+title+"</h2>";
@@ -133,27 +131,30 @@ $.ajax({
                 modalArea += "<ul class='link_btn_area'>";
                 if(eventEnd == 'yes'){
                     //이벤트 종료시
-                    modalArea += "<li><a href='"+imgSrc+"' target='_blank'>VIEW IMG</a></li>";
-                    if(imgSrc2 == true){
-                        modalArea += "<li><a href='"+imgSrc2+"' target='_blank'>VIEW IMG</a></li>";
-                    }if(imgSrc2 == true && imgSrc3 == true){
+                    if(!imgSrc2 == "undefined" || !imgSrc2 == null || !imgSrc2 == "" && !imgSrc3 == "undefined" || !imgSrc3 == null || !imgSrc3 == ""){
+                        modalArea += "<li><a href='"+imgSrc+"' target='_blank'>VIEW IMG</a></li>";
                         modalArea += "<li><a href='"+imgSrc2+"' target='_blank'>VIEW IMG</a></li>";
                         modalArea += "<li><a href='"+imgSrc3+"' target='_blank'>VIEW IMG</a></li>";
+                    }else if(!imgSrc2 == "undefined" || !imgSrc2 == null || !imgSrc2 == ""){
+                        modalArea += "<li><a href='"+imgSrc+"' target='_blank'>VIEW IMG</a></li>";
+                        modalArea += "<li><a href='"+imgSrc2+"' target='_blank'>VIEW IMG</a></li>";
+                    }else{
+                        modalArea += "<li><a href='"+imgSrc+"' target='_blank'>VIEW IMG</a></li>";
                     }
                 }else{
                     //이벤트 종료x
-                    if(siteUrl == true && siteUrl2 == true){
-                        modalArea += "<li><a href='"+siteUrl+"' target='_blank'>VIEW SITE</a></li>";
-                        modalArea += "<li><a href='"+imgSrc2+"' target='_blank'>VIEW SITE</a></li>";
-                    }if(siteUrl2 == true && siteUrl3 == true){
-                        modalArea += "<li><a href='"+siteUrl+"' target='_blank'>VIEW SITE</a></li>";
-                        modalArea += "<li><a href='"+siteUrl2+"' target='_blank'>VIEW SITE</a></li>";
-                        modalArea += "<li><a href='"+siteUrl3+"' target='_blank'>VIEW SITE</a></li>";
-                    }if(siteUrl2 == true && siteUrl3 == true && siteUrl4 == true){
+                    if(!siteUrl2 == "undefined" || !siteUrl2 == null || !siteUrl2 == "" && !siteUrl3 == "undefined" || !siteUrl3 == null || !siteUrl3 == ""  && !siteUrl4 == "undefined" || !siteUrl4 == null || !siteUrl4 == "" ){
                         modalArea += "<li><a href='"+siteUrl+"' target='_blank'>VIEW SITE</a></li>";
                         modalArea += "<li><a href='"+siteUrl2+"' target='_blank'>VIEW SITE</a></li>";
                         modalArea += "<li><a href='"+siteUrl3+"' target='_blank'>VIEW SITE</a></li>";
                         modalArea += "<li><a href='"+siteUrl4+"' target='_blank'>VIEW SITE</a></li>";
+                    }else if(!siteUrl2 == "undefined" || !siteUrl2 == null || !siteUrl2 == "" && !siteUrl3 == "undefined" || !siteUrl3 == null || !siteUrl3 == ""){
+                        modalArea += "<li><a href='"+siteUrl+"' target='_blank'>VIEW SITE</a></li>";
+                        modalArea += "<li><a href='"+siteUrl2+"' target='_blank'>VIEW SITE</a></li>";
+                        modalArea += "<li><a href='"+siteUrl3+"' target='_blank'>VIEW SITE</a></li>";
+                    }else if(!siteUrl == "undefined" || !siteUrl == null || !siteUrl == "" && !siteUrl2 == "undefined" || !siteUrl2 == null || !siteUrl2 == ""){
+                        modalArea += "<li><a href='"+siteUrl+"' target='_blank'>VIEW SITE</a></li>";
+                        modalArea += "<li><a href='"+imgSrc2+"' target='_blank'>VIEW SITE</a></li>";
                     }else{
                         modalArea += "<li><a href='"+siteUrl+"' target='_blank'>VIEW SITE</a></li>";
                     }
@@ -170,104 +171,24 @@ $.ajax({
                 modalArea += "<li><b>제작기간</b>: "+makeDate+"</li>";
                 modalArea += "<li><b>코딩 기여도</b>: "+participation+" <br><ul class='refer fs14'>";
                 modalArea += "<li>"+participationTxt01+"</li>";
-                modalArea += "<li>"+participationTxt02+"</li>";
-                if(participationTxt03 == true){
+                if(!participationTxt02 == "undefined" || !participationTxt02 == null || !participationTxt02 == "" == true && !participationTxt03 == "undefined" || !participationTxt03 == null || !participationTxt03 == ""){
+                    modalArea += "<li>"+participationTxt02+"</li>";
                     modalArea += "<li>"+participationTxt03+"</li>";
+                }else if(!participationTxt02 == "undefined" || !participationTxt02 == null || !participationTxt02 == ""){
+                    modalArea += "<li>"+participationTxt02+"</li>";
                 }
                 modalArea += "</ul></li>";
-                if(codeImgSrc == true && codeTxt == true){
+                if(!codeImgSrc == "undefined" || !codeImgSrc == null || !codeImgSrc == "" && !codeTxt == "undefined" || !codeTxt == null || !codeTxt == ""){
                     modalArea += "<li class='code_area'><b>참고 코드</b>:<div class='code_main'>";
                     modalArea += "<div class='code_img'><img src='"+codeImgSrc+"'></div>";
                     modalArea += "<p>"+codeTxt+"</p>";
                     modalArea += "</div></li>";
                 }
                 modalArea += "</div></li></ul></div></div></div></div></div>";
-                $('.work_detail').html(modalArea);
-            });
 
+                $('.work_detail').append(modalArea);
             }
 
-            // data.work.forEach(function (value) {
-            //     no = value.no;
-            //     title = value.title;
-            //     imgSrc = value.imgSrc;
-            //     imgSrc2 = value.imgSrc2;
-            //     imgSrc3 = value.imgSrc3;
-            //     eventEnd = value.eventEnd;
-            //     siteUrl = value.siteUrl;
-            //     siteUrl2 = value.siteUrl2;
-            //     siteUrl3 = value.siteUrl3;
-            //     siteUrl4 = value.siteUrl4;
-            //     mainTxtno = value.mainTxt;
-            //     mediaCheck = value.mediaCheck;
-            //     makeDate = value.makeDate;
-            //     participation = value.participation;
-            //     participationTxt01 = value.participationTxt01;
-            //     participationTxt02 = value.participationTxt02;
-            //     participationTxt03 = value.participationTxt03;
-            //     codeImgSrc = value.codeImgSrc;
-            //     codeTxt = value.codeTxt;
-
-            //     modalArea += "<div id='PF_popup' class='detail_modal no_"+no+"'><div class='closeBtn'></div><div class='detail_main_cont'>";
-            //     modalArea += "<h2>"+title+"</h2>";
-            //     modalArea += "<div class='work_main'><div class='clearFix'><div class='fl work_event'>";
-            //     modalArea += "<div class='mokup_img'><div class='mokup_img_top' style='background-image: url("+imgSrc+");'><img src='./img/com_imac_img.png'></div>";
-            //     modalArea += "<div class='mokup_img_bottom'><img src='./img/com_imac_img2.png' alt=''></div></div>";
-            //     modalArea += "<ul class='link_btn_area'>";
-            //     if(eventEnd == 'yes'){
-            //         //이벤트 종료시
-            //         modalArea += "<li><a href='"+imgSrc+"' target='_blank'>VIEW IMG</a></li>";
-            //         if(imgSrc2 == true){
-            //             modalArea += "<li><a href='"+imgSrc2+"' target='_blank'>VIEW IMG</a></li>";
-            //         }if(imgSrc2 == true && imgSrc3 == true){
-            //             modalArea += "<li><a href='"+imgSrc2+"' target='_blank'>VIEW IMG</a></li>";
-            //             modalArea += "<li><a href='"+imgSrc3+"' target='_blank'>VIEW IMG</a></li>";
-            //         }
-            //     }else{
-            //         //이벤트 종료x
-            //         if(siteUrl == true && siteUrl2 == true){
-            //             modalArea += "<li><a href='"+siteUrl+"' target='_blank'>VIEW SITE</a></li>";
-            //             modalArea += "<li><a href='"+imgSrc2+"' target='_blank'>VIEW SITE</a></li>";
-            //         }if(siteUrl2 == true && siteUrl3 == true){
-            //             modalArea += "<li><a href='"+siteUrl+"' target='_blank'>VIEW SITE</a></li>";
-            //             modalArea += "<li><a href='"+siteUrl2+"' target='_blank'>VIEW SITE</a></li>";
-            //             modalArea += "<li><a href='"+siteUrl3+"' target='_blank'>VIEW SITE</a></li>";
-            //         }if(siteUrl2 == true && siteUrl3 == true && siteUrl4 == true){
-            //             modalArea += "<li><a href='"+siteUrl+"' target='_blank'>VIEW SITE</a></li>";
-            //             modalArea += "<li><a href='"+siteUrl2+"' target='_blank'>VIEW SITE</a></li>";
-            //             modalArea += "<li><a href='"+siteUrl3+"' target='_blank'>VIEW SITE</a></li>";
-            //             modalArea += "<li><a href='"+siteUrl4+"' target='_blank'>VIEW SITE</a></li>";
-            //         }else{
-            //             modalArea += "<li><a href='"+siteUrl+"' target='_blank'>VIEW SITE</a></li>";
-            //         }
-            //     }
-            //     modalArea += "</ul></div>";
-            //     modalArea += "<div class='fr work_comment'><ul class='thisPage'>";
-            //     if(eventEnd == 'yes'){
-            //         modalArea += "<li class='pb15'><p class='fs14'>*해당 페이지는 이벤트 종료로 인해 연결 사이트가 없습니다.</p></li>";
-            //     }
-            //     modalArea += "<li class='pb15'><p>"+mainTxt+"</p></li>";
-            //     if(mediaCheck == 'yes'){
-            //         modalArea += "<li><span class='fs14'>미디어쿼리 대응 완료</span></li>"
-            //     }
-            //     modalArea += "<li><b>제작기간</b>: "+makeDate+"</li>";
-            //     modalArea += "<li><b>코딩 기여도</b>: "+participation+" <br><ul class='refer fs14'>";
-            //     modalArea += "<li>"+participationTxt01+"</li>";
-            //     modalArea += "<li>"+participationTxt02+"</li>";
-            //     if(participationTxt03 == true){
-            //         modalArea += "<li>"+participationTxt03+"</li>";
-            //     }
-            //     modalArea += "</ul></li>";
-            //     if(codeImgSrc == true && codeTxt == true){
-            //         modalArea += "<li class='code_area'><b>참고 코드</b>:<div class='code_main'>";
-            //         modalArea += "<div class='code_img'><img src='"+codeImgSrc+"'></div>";
-            //         modalArea += "<p>"+codeTxt+"</p>";
-            //         modalArea += "</div></li>";
-            //     }
-            //     modalArea += "</div></li></ul></div></div></div></div></div>";
-            // });
-
-            // $('.work_detail').html(modalArea);
         }
 
 // 클론 및 가로스크롤
@@ -296,12 +217,10 @@ $.ajax({
         function makeClone(){
             for(var i=0; i<listCount; i++){
                 var cloneList = workListItem[i].cloneNode(true);
-                cloneList.classList.add('clone');
                 workList.appendChild(cloneList);
             }
             for(var i = listCount -1; i >=0; i-- ){
                 var cloneList = workListItem[i].cloneNode(true);
-                cloneList.classList.add('clone');
                 workList.prepend(cloneList);
             }
             updateWid(); //클론한 넓이값
@@ -366,23 +285,29 @@ $.ajax({
 
 //포폴 팝업
 
-    $(".work_list li").on("click", function(event) {
-        setTimeout(function() {
-            $("#PF_popup").show(250);
-            $("body").append('<div class="backon"></div>');
 
-            function scrollDisable(){
-                $('body, html').addClass('hidden').on('scroll touchmove mousewheel', function(e){
-                    e.preventDefault();
-                });
-            }
-            scrollDisable();
-        },200);
-    });
+    for(var i = 0; i< contentsData.length; i++){
+        $(".work_list li").on("click", function(event) {
+            var thisNo = $(this).attr('class');
+
+            setTimeout(function() {
+                $(".detail_modal ").eq(thisNo - 1).show(250);
+                $("body").append('<div class="backon"></div>');
+
+                function scrollDisable(){
+                    $('body, html').addClass('hidden').on('scroll touchmove mousewheel', function(e){
+                        e.preventDefault();
+                    });
+                }
+                scrollDisable();
+            },200);
+        });
+        break;
+    }
 
     $("body").on("click", function(event) {
         if(event.target.className == 'closeBtn' || event.target.className == 'backon'){
-            $("#PF_popup").hide(250);
+            $(".detail_modal").hide(250);
             $(".backon").remove();
 
             function scrollAble(){
