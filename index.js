@@ -154,7 +154,7 @@ $.ajax({
                         modalArea += "<li><a href='"+siteUrl3+"' target='_blank'>VIEW SITE</a></li>";
                     }else if(!siteUrl == "undefined" || !siteUrl == null || !siteUrl == "" && !siteUrl2 == "undefined" || !siteUrl2 == null || !siteUrl2 == ""){
                         modalArea += "<li><a href='"+siteUrl+"' target='_blank'>VIEW SITE</a></li>";
-                        modalArea += "<li><a href='"+imgSrc2+"' target='_blank'>VIEW SITE</a></li>";
+                        modalArea += "<li><a href='"+siteUrl+"' target='_blank'>VIEW SITE</a></li>";
                     }else{
                         modalArea += "<li><a href='"+siteUrl+"' target='_blank'>VIEW SITE</a></li>";
                     }
