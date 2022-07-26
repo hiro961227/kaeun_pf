@@ -563,8 +563,9 @@ progress::-webkit-progress-value{
         padding: 10vw 0;
     }
     .work_list li{
-        width: 25%;
-        padding-right:5.33333vw;
+        max-width: 180px;
+        width: 20%;
+        padding-right: 5.33333vw;
         cursor: pointer;
     }
     .list_img{
