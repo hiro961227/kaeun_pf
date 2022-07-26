@@ -86,9 +86,7 @@ body::-webkit-scrollbar{display: none;}
 }
 
 .its_me .my_photo{
-    width:250px; height:250px;
-    border-radius: 50%;
-    background-color:#ccc;
+    width:250px;
     animation: circleSize2 .8s ease-in-out forwards;
 }
 
@@ -137,8 +135,7 @@ body::-webkit-scrollbar{display: none;}
     z-index: 5;
 }
 
-.its_me.in_about .my_photo{
-    width: 200px; height: 200px;
+.its_me.in_about .my_photo{    width: 200px;
     animation: circleSize .8s ease-in-out forwards;
 }
 .its_me.in_about .hello{padding-top: 20px;}
@@ -168,15 +165,15 @@ body::-webkit-scrollbar{display: none;}
 }
 
 @keyframes circleSize{
-    0%{width:250px; height:250px;}
-    50%{width:300px; height:300px;}
-    100%{width:200px; height:200px;}
+    0%{transform: scale(1);}
+    50%{transform: scale(1.2);}
+    100%{transform: scale(.8);}
 }
 
 @keyframes circleSize2{
-    0%{width:200px; height:200px;}
-    50%{width:300px; height:300px;}
-    100%{width:250px; height:250px;}
+    0%{transform: scale(.8);}
+    50%{transform: scale(1.2);}
+    100%{transform: scale(1);}
 }
 /* skills에서 고정 */
 .its_me.stop{
@@ -518,7 +515,6 @@ progress::-webkit-progress-value{
     }
     .its_me.in_about .my_photo {
         width: 140px !important;
-        height: auto !important;
         margin-right: 1.2vw;
     }
     .its_me.in_about .hello {
