@@ -135,7 +135,8 @@ body::-webkit-scrollbar{display: none;}
     z-index: 5;
 }
 
-.its_me.in_about .my_photo{    width: 200px;
+.its_me.in_about .my_photo{
+    transform: scale(1);
     animation: circleSize .8s ease-in-out forwards;
 }
 .its_me.in_about .hello{padding-top: 20px;}
@@ -509,8 +510,8 @@ progress::-webkit-progress-value{
         position: fixed;
         right: 0;
         left: 50%;
-        top: 12%;
-        transform: translate(-50%,-12%);
+        top: 5%;
+        transform: translate(-50%,-5%);
         padding:4vw 0;
     }
     .its_me.in_about .my_photo {

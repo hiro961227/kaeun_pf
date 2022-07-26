@@ -14,6 +14,8 @@ const workOffH = workPage.offsetTop;
 const itsMe = document.querySelector('.its_me');
 const myPhoto = document.querySelector('.my_photo');
 
+let mobileStopBanner = skillsPage.clientHeight + skillsOffH
+
 const fadeInCont = document.querySelectorAll('.com_fadein');
 var mobile = (/iphone|ipad|ipod|android/i.test(navigator.userAgent.toLowerCase()));
 
@@ -63,6 +65,10 @@ document.addEventListener('scroll', () => {
 
 //it's me 스톱
     pixels >= skillsOffH ? itsMe.classList.add("stop") : itsMe.classList.remove("stop");
+
+    if (mobile){
+        pixels >= mobileStopBanner ? itsMe.classList.add("stop") : itsMe.classList.remove("stop");
+    }
 
 //콘텐츠 fadeIn
 fadeInCont.forEach(function(el){
