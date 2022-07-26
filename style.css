@@ -131,9 +131,9 @@ body::-webkit-scrollbar{display: none;}
     border-radius: 25px;
     margin:auto;
     position: fixed;
-    right: 40%;
+    right: 35%;
     top: 50%;
-    transform: translate(0,-50%);
+    transform: translate(-35%,-50%);
     z-index: 5;
 }
 
@@ -202,10 +202,12 @@ body::-webkit-scrollbar{display: none;}
 
 
 /* 경력사항 에리어 */
-.history_list{
+.history_list {
     display: flex;
     justify-content: flex-start;
     padding-top: 15px;
+    flex-wrap: wrap;
+    line-height: 2;
 }
 .history_list li{
     margin-right: 8px;
@@ -290,7 +292,11 @@ progress::-webkit-progress-value{
 }
 
 /* 작업물 에리어 */
-#work{position: relative;}
+#work{
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
 .work_cont{
     width: 100%;
     overflow: hidden;
@@ -484,4 +490,70 @@ progress::-webkit-progress-value{
     display: inline-block;
     vertical-align: top;
     margin: 10px;
+}
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width:768px) and (max-width:1023px) {
+    .its_me{width: 100%;}
+    .its_me.in_about {
+        max-width: 300px;
+        width: 30%;
+    }
+}
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
+@media all and (max-width:767px) {
+    .its_me.in_about {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        max-width: unset;
+        width: 95%;
+        position: fixed;
+        right: 0;
+        left: 50%;
+        top: 12%;
+        transform: translate(-50%,-12%);
+        padding:4vw 0;
+    }
+    .its_me.in_about .my_photo {
+        width: 140px !important;
+        height: auto !important;
+        margin-right: 1.2vw;
+    }
+    .its_me.in_about .hello {
+        display: inline-block;
+        width: 50%;
+        padding:0;
+    }
+    .its_me.in_about .page_nav a {
+        font-size: 1.2rem;
+    }
+    .its_me.in_about .page_nav {
+        margin-bottom: 1.449275vw;
+    }
+
+    .about_cont, .skills_cont{
+        float: unset;
+        width: 90%; margin:auto;
+    }
+    .com_page {
+        padding-top: 4.5vw;
+    }
+
+    .progress_bar li {
+        flex-wrap: wrap;
+        padding: 1.5vw 0;
+    }
+    .progress_bar li p {
+        width: 100%;
+    }
+    .progress_bar li .skillPG {
+        width: 100%;
+    }
+    progress {
+        width: 100%;
+        height: 4.2vw;
+        margin-top: 2.0355vw;
+    }
 }

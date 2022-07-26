@@ -15,6 +15,8 @@ const itsMe = document.querySelector('.its_me');
 const myPhoto = document.querySelector('.my_photo');
 
 const fadeInCont = document.querySelectorAll('.com_fadein');
+var mobile = (/iphone|ipad|ipod|android/i.test(navigator.userAgent.toLowerCase()));
+
 
 //it's me 네비게이션
 document.querySelectorAll('a[href^="#"]').forEach(nav => {
@@ -23,6 +25,12 @@ document.querySelectorAll('a[href^="#"]').forEach(nav => {
         document.querySelector(this.getAttribute('href')).scrollIntoView({
             behavior: 'smooth'
         });
+        console.log('im pc')
+
+        if (mobile) {
+            console.log('im mobile')
+            document.querySelector(this.getAttribute('href')).scrollTop = this.offsetTop + this.clientHeight;
+        }
     });
 });
 
@@ -101,6 +109,7 @@ $.ajax({
                 var imgSrc2 = contentsData[i].imgSrc2;
                 var imgSrc3 = contentsData[i].imgSrc3;
                 var eventEnd = contentsData[i].eventEnd;
+                var urlNotice = contentsData[i].urlNotice;
                 var siteUrl = contentsData[i].siteUrl;
                 var siteUrl2 = contentsData[i].siteUrl2;
                 var siteUrl3 = contentsData[i].siteUrl3;
@@ -162,11 +171,11 @@ $.ajax({
                 modalArea += "</ul></div>";
                 modalArea += "<div class='fr work_comment'><ul class='thisPage'>";
                 if(eventEnd == 'yes'){
-                    modalArea += "<li class='pb15'><p class='fs14'>*해당 페이지는 이벤트 종료로 인해 연결 사이트가 없습니다.</p></li>";
+                    modalArea += "<li class='pb15'><p class='fs14'>"+urlNotice+"</p></li>";
                 }
                 modalArea += "<li class='pb15'><p>"+mainTxt+"</p></li>";
                 if(mediaCheck == 'yes'){
-                    modalArea += "<li><span class='fs14'>미디어쿼리 대응 완료</span></li>"
+                    modalArea += "<li><span class='fs14 fwB'>미디어쿼리 대응 완료</span></li>"
                 }
                 modalArea += "<li><b>제작기간</b>: "+makeDate+"</li>";
                 modalArea += "<li><b>코딩 기여도</b>: "+participation+" <br><ul class='refer fs14'>";
@@ -284,14 +293,12 @@ $.ajax({
         }
 
 //포폴 팝업
-
-
     for(var i = 0; i< contentsData.length; i++){
         $(".work_list li").on("click", function(event) {
             var thisNo = $(this).attr('class');
 
             setTimeout(function() {
-                $(".detail_modal ").eq(thisNo - 1).show(250);
+                $(".detail_modal").eq(thisNo - 1).show(250);
                 $("body").append('<div class="backon"></div>');
 
                 function scrollDisable(){
