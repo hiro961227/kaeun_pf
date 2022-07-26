@@ -252,7 +252,7 @@ $.ajax({
             let initialTranslateValue = -(listWid + listMargin) * listCount;
             workList.style.transform = 'translate('+initialTranslateValue+'px,45%)';
             if(mobile){
-                workList.style.transform = 'translate('+initialTranslateValue+'px,70%)';
+                workList.style.transform = 'translate('+initialTranslateValue+'px,100%)';
             }
         }
 

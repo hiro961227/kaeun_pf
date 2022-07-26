@@ -560,7 +560,7 @@ progress::-webkit-progress-value{
     }
 
     .work_cont h2 {
-        padding: 10vw 0;
+        padding: 15vw 0;
     }
     .work_list li{
         max-width: 180px;
@@ -587,12 +587,12 @@ progress::-webkit-progress-value{
     }
 
     .prevBtn{
-        top:38%; left:2%;
-        transform: translate(-2%,-38%) rotate(-135deg);
+        top:45%; left:2%;
+        transform: translate(-2%,-45%) rotate(-135deg);
     }
     .nextBtn{
-        top:38%; right:2%;
-        transform: translate(-2%,-38%) rotate(45deg);
+        top:45%; right:2%;
+        transform: translate(-2%,-45%) rotate(45deg);
     }
 
     .detail_modal {
