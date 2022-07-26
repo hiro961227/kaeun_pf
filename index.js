@@ -27,15 +27,6 @@ document.querySelectorAll('a[href^="#"]').forEach(nav => {
         document.querySelector(this.getAttribute('href')).scrollIntoView({
             behavior: 'smooth'
         });
-        console.log('im pc')
-
-        console.log((this.getAttribute('href')).offsetTop)
-        console.log((this.getAttribute('href')).clientHeight)
-        console.log((this.getAttribute('href')).offsetTop + (this.getAttribute('href')).clientHeight)
-        if (mobile) {
-            console.log('im mobile')
-            document.querySelector(this.getAttribute('href')).scrollTop = this.offsetTop + this.clientHeight;
-        }
     });
 });
 

@@ -501,18 +501,19 @@ progress::-webkit-progress-value{
 
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width:767px) {
+    .sp_only{position: relative;;}
     .its_me.in_about {
         display: flex;
         justify-content: center;
         align-content: center;
         max-width: unset;
         width: 95%;
-        position: fixed;
-        right: 0;
-        left: 50%;
-        top: 5%;
-        transform: translate(-50%,-5%);
         padding:4vw 0;
+        position:  sticky;
+        right: 0;
+        top: 5%;
+        transform: translate(0%,-5%);
+        transition: .5s;
     }
     .its_me.in_about .my_photo {
         width: 140px !important;
@@ -533,6 +534,7 @@ progress::-webkit-progress-value{
     .about_cont, .skills_cont{
         float: unset;
         width: 90%; margin:auto;
+        padding-top: 60vw;
     }
     .com_page {
         padding-top: 4.5vw;
