@@ -209,9 +209,8 @@ $.ajax({
         let listCount = workListItem.length,
             listWid = 300,
             listMargin = 40;
-        let presseds = [false,false];
-        let startX = [];
-        let x = [];
+        let nextBtn = document.querySelector('.nextBtn');
+        let prevBtn = document.querySelector('.prevBtn');
 
         $('.work_list').hover(function(){
             bodyTag.style.overflow = "hidden";
@@ -224,6 +223,7 @@ $.ajax({
                 e.preventDefault();
         })
         });
+
 
         makeClone();
         function makeClone(){
@@ -257,77 +257,31 @@ $.ajax({
         }
 
         workList.addEventListener('mousewheel',function(e){
-                if(e.wheelDelta > 0){
-                    //up
-                    try{move = el.previousElementSibling.offsetLeft;
-                    }
-                    catch{
-                        moveSlide(move - 1);
-                    }
-                }else{
-                    //down
-                    try{move = el.nextElementSibling.offsetLeft;
-                    }
-                    catch{
-                        moveSlide(move + 1);
-                    }
-                    finally{}
+            if(e.wheelDelta > 0){
+                //up
+                try{move = el.previousElementSibling.offsetLeft;
                 }
-            });
-
-
-
-            Array.from(workList).forEach((slider, index) => {
-                slider.addEventListener("mousedown", e => {
-                    presseds[index] = true
-                    startx[index] = e.offsetX - workListItem[index].offsetLeft
-                    slider.style.cursor = "grabbing"
-                    console.log('1')
-                })
-
-                slider.addEventListener("mouseenter", () => {
-                    slider.style.cursor = "grab"
-                    console.log('2')
-                })
-
-                slider.addEventListener("mouseup", () => {
-                    slider.style.cursor = "grab"
-                    console.log('3')
-                })
-
-                window.addEventListener("mouseup", () => {
-                    presseds[index] = false
-                    console.log('4')
-                })
-
-                slider.addEventListener("mousemove", e => {
-                    if (!presseds[index]) return
-                    e.preventDefault()
-                    x[index] = e.offsetX
-
-                    workListItem[index].style.left = `${x[index] - startx[index]}px`
-                    checkboundary(index)
-                })
-            })
-
-
-            function checkboundary(index) {
-                let outer = workList[index].getBoundingClientRect()
-                let inner = workListItem[index].getBoundingClientRect()
-
-                if (parseInt(workListItem[index].style.left) > 0) {
-                    workListItem[index].style.left = "0px"
-                } else if (inner.right < outer.right) {
-                    workListItem[index].style.left = `-${inner.width - outer.width}px`
+                catch{
+                    moveSlide(move - 1);
                 }
+            }else{
+                //down
+                try{move = el.nextElementSibling.offsetLeft;
+                }
+                catch{
+                    moveSlide(move + 1);
+                }
+                finally{}
             }
-        //버튼일경우
-        // nextBtn.addEventListener('click',function(){
-        //     moveSlide(move + 1);
-        // })
-        // prevBtn.addEventListener('click',function(){
-        //     moveSlide(move - 1);
-        // })
+        });
+
+        nextBtn.addEventListener('click',function(){
+            moveSlide(move + 1);
+        })
+        prevBtn.addEventListener('click',function(){
+            moveSlide(move - 1);
+        })
+
         function moveSlide(num){
             workList.style.left = -num * (listWid + listMargin) + 'px';
             move = num;

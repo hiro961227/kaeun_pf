@@ -576,6 +576,25 @@ progress::-webkit-progress-value{
         padding-top: 3.5vw;
         font-size: 1.2rem;
     }
+
+
+    .prevBtn,.nextBtn{
+        width: 2.6668vw; height: 2.6668vw;
+        border-width: 1vw 1vw 0 0;
+        border-style: solid;
+        z-index: 10;
+        position: absolute;
+    }
+
+    .prevBtn{
+        top:38%; left:2%;
+        transform: translate(-2%,-38%) rotate(-135deg);
+    }
+    .nextBtn{
+        top:38%; right:2%;
+        transform: translate(-2%,-38%) rotate(45deg);
+    }
+
     .detail_modal {
         max-width: 85%;
         width: 95%;
