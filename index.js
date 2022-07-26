@@ -202,13 +202,16 @@ $.ajax({
 
 // 클론 및 가로스크롤
     setTimeout(function(){
-        var workList = document.querySelector('.work_list');
-        var workListItem = document.querySelectorAll('.work_list li');
-        var move = 0;
-        var listCount = workListItem.length,
+        let sliders = document.querySelector('.slideArea');
+        let workList = document.querySelector('.work_list');
+        let workListItem = document.querySelectorAll('.work_list li');
+        let move = 0;
+        let listCount = workListItem.length,
             listWid = 300,
             listMargin = 40;
-
+        let presseds = [false,false];
+        let startX = [];
+        let x = [];
 
         $('.work_list').hover(function(){
             bodyTag.style.overflow = "hidden";
@@ -224,12 +227,12 @@ $.ajax({
 
         makeClone();
         function makeClone(){
-            for(var i=0; i<listCount; i++){
-                var cloneList = workListItem[i].cloneNode(true);
+            for(let i=0; i<listCount; i++){
+                let cloneList = workListItem[i].cloneNode(true);
                 workList.appendChild(cloneList);
             }
-            for(var i = listCount -1; i >=0; i-- ){
-                var cloneList = workListItem[i].cloneNode(true);
+            for(let i = listCount -1; i >=0; i-- ){
+                let cloneList = workListItem[i].cloneNode(true);
                 workList.prepend(cloneList);
             }
             updateWid(); //클론한 넓이값
@@ -239,15 +242,18 @@ $.ajax({
             }, 100);
         }
         function updateWid(){
-            var currentList = document.querySelectorAll('.work_list li');
-            var newListCount = currentList.length;
+            let currentList = document.querySelectorAll('.work_list li');
+            let newListCount = currentList.length;
 
-            var newWid = (listWid + listMargin) * newListCount - listMargin + 'px';
+            let newWid = (listWid + listMargin) * newListCount - listMargin + 'px';
             workList.style.width = newWid;
         }
         function setInitialPos(){
-            var initialTranslateValue = -(listWid + listMargin) * listCount;
+            let initialTranslateValue = -(listWid + listMargin) * listCount;
             workList.style.transform = 'translate('+initialTranslateValue+'px,45%)';
+            if(mobile){
+                workList.style.transform = 'translate('+initialTranslateValue+'px,70%)';
+            }
         }
 
         workList.addEventListener('mousewheel',function(e){
@@ -269,6 +275,52 @@ $.ajax({
                 }
             });
 
+
+
+            Array.from(workList).forEach((slider, index) => {
+                slider.addEventListener("mousedown", e => {
+                    presseds[index] = true
+                    startx[index] = e.offsetX - workListItem[index].offsetLeft
+                    slider.style.cursor = "grabbing"
+                    console.log('1')
+                })
+
+                slider.addEventListener("mouseenter", () => {
+                    slider.style.cursor = "grab"
+                    console.log('2')
+                })
+
+                slider.addEventListener("mouseup", () => {
+                    slider.style.cursor = "grab"
+                    console.log('3')
+                })
+
+                window.addEventListener("mouseup", () => {
+                    presseds[index] = false
+                    console.log('4')
+                })
+
+                slider.addEventListener("mousemove", e => {
+                    if (!presseds[index]) return
+                    e.preventDefault()
+                    x[index] = e.offsetX
+
+                    workListItem[index].style.left = `${x[index] - startx[index]}px`
+                    checkboundary(index)
+                })
+            })
+
+
+            function checkboundary(index) {
+                let outer = workList[index].getBoundingClientRect()
+                let inner = workListItem[index].getBoundingClientRect()
+
+                if (parseInt(workListItem[index].style.left) > 0) {
+                    workListItem[index].style.left = "0px"
+                } else if (inner.right < outer.right) {
+                    workListItem[index].style.left = `-${inner.width - outer.width}px`
+                }
+            }
         //버튼일경우
         // nextBtn.addEventListener('click',function(){
         //     moveSlide(move + 1);
