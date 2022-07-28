@@ -359,7 +359,7 @@ progress::-webkit-progress-value{
 .work_list li:hover .list_img{
     filter: grayscale(0%);
 }
-
+.moreBtn{display: none;}
 /* 팝업 */
 .hidden{overflow: hidden;}
 .backon{
@@ -407,6 +407,14 @@ progress::-webkit-progress-value{
 .detail_main_cont h2{
     padding-bottom:75px;
 }
+.work_main {
+    height: 50vh;
+    min-height: 600px;
+}
+.work_main .clearFix {
+    width: 100%;
+    height: 100%;
+}
 .work_main .clearFix::after{
     content:'';
     display: block;
@@ -416,12 +424,12 @@ progress::-webkit-progress-value{
 .work_comment.fr{float:right;}
 .work_event{
     width: 45%;
-    height: 600px;
+    height: 100%;
     text-align: center;
     padding-bottom: 20px;
 }
 .mokup_img_top{
-    max-width: 600px;
+    max-width: 100%;
     margin:auto;
     font-size: 0;
     z-index: 5;
@@ -562,23 +570,57 @@ progress::-webkit-progress-value{
     .work_cont h2 {
         padding: 15vw 0;
     }
+
+    .work_list{
+        width: 100% !important;
+        height: 75vh;
+        flex-wrap: wrap;
+        justify-content: center;
+        transform: translate(0, 0) !important;
+        position: unset;
+    }
     .work_list li{
         max-width: 180px;
-        width: 20%;
-        padding-right: 5.33333vw;
+        width: 40%;
+        padding:0 5.33333vw 4vw 0;
         cursor: pointer;
     }
+    .work_list li:nth-of-type(2n){padding-right: 0;}
+
     .list_img{
         width: 100%;
-        height: 35vh;
+        height: 20vh;
     }
     .list_name {
         padding-top: 3.5vw;
         font-size: 1.2rem;
     }
 
+    .moreBtn{
+        width: 100%;
+        height: 20vh;
+        display: flex;
+        align-items: flex-end;
+        background: linear-gradient(to bottom, rgba(0,0,0,0) 10%,#fcfaf8 90%);
+        position: absolute;
+        bottom:0; left:0;
+    }
+    .moreBtnTxt{
+        max-width: 320px;
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+        background: #755232;
+        color:#f7f2ed;
+        font-weight: 500;
+        padding: 3vw 0;
+        margin-bottom: 5vw;
+    }
 
-    .prevBtn,.nextBtn{
+    .slideArea::after,
+    .slideArea::before{display: none;}
+
+    /* .prevBtn,.nextBtn{
         width: 2.6668vw; height: 2.6668vw;
         border-width: 1vw 1vw 0 0;
         border-style: solid;
@@ -593,7 +635,7 @@ progress::-webkit-progress-value{
     .nextBtn{
         top:45%; right:2%;
         transform: translate(-2%,-45%) rotate(45deg);
-    }
+    } */
 
     .detail_modal {
         max-width: 85%;

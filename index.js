@@ -55,9 +55,9 @@ document.addEventListener('scroll', () => {
     }
 
 //it's me 스톱
-    pixels >= skillsOffH ? itsMe.classList.add("stop") : itsMe.classList.remove("stop");
-
-    if (mobile){
+    if(matchMedia("all and (min-width:768px)")){
+        pixels >= skillsOffH ? itsMe.classList.add("stop") : itsMe.classList.remove("stop");
+    }else if (matchMedia("all and (max-width:767px)")){
         pixels >= mobileStopBanner ? itsMe.classList.add("stop") : itsMe.classList.remove("stop");
     }
 
@@ -126,8 +126,13 @@ $.ajax({
 
                 if(no <= contentsData.length + 1){
                     //리스트
-                    workListArea += "<li class='"+no+"'><div class='list_img' style='background-image: url("+imgSrc+");'></div>"
-                    workListArea += "<p class='list_name'>"+title+"</p></li>";
+                    if(6 < contentsData[i].no){
+                        workListArea += "<li class='"+no+"listItem'><div class='list_img' style='background-image: url("+imgSrc+");'></div>"
+                        workListArea += "<p class='list_name'>"+title+"</p></li>";
+                    }else{
+                        workListArea += "<li class='"+no+"listItem onLoad'><div class='list_img' style='background-image: url("+imgSrc+");'></div>"
+                        workListArea += "<p class='list_name'>"+title+"</p></li>";
+                    }
 
                     $('ul.work_list').append(workListArea);
                 }
@@ -201,135 +206,152 @@ $.ajax({
         }
 
 // 클론 및 가로스크롤
-    setTimeout(function(){
-        let sliders = document.querySelector('.slideArea');
-        let workList = document.querySelector('.work_list');
-        let workListItem = document.querySelectorAll('.work_list li');
-        let move = 0;
-        let listCount = workListItem.length,
-            listWid = 300,
-            listMargin = 40;
-        let nextBtn = document.querySelector('.nextBtn');
-        let prevBtn = document.querySelector('.prevBtn');
-
-        $('.work_list').hover(function(){
-            bodyTag.style.overflow = "hidden";
-            document.addEventListener('scroll mousewheel',function(e){
-                e.preventDefault();
-        })
-        },function(){
-            bodyTag.style.overflow = "auto";
-            document.addEventListener('scroll mousewheel',function(e){
-                e.preventDefault();
-        })
-        });
-
-
-        makeClone();
-        function makeClone(){
-            for(let i=0; i<listCount; i++){
-                let cloneList = workListItem[i].cloneNode(true);
-                workList.appendChild(cloneList);
-            }
-            for(let i = listCount -1; i >=0; i-- ){
-                let cloneList = workListItem[i].cloneNode(true);
-                workList.prepend(cloneList);
-            }
-            updateWid(); //클론한 넓이값
-            setInitialPos(); //중간으로 이동
+        if(matchMedia("screen and (min-width:768px)")){
+            console.log('PC 버전입니다.')
             setTimeout(function(){
-                workList.classList.add('moveAni');
-            }, 100);
-        }
-        function updateWid(){
-            let currentList = document.querySelectorAll('.work_list li');
-            let newListCount = currentList.length;
+                let workList = document.querySelector('.work_list');
+                let workListItem = document.querySelectorAll('.work_list li');
+                let move = 0;
+                let listCount = workListItem.length,
+                    listWid = 300,
+                    listMargin = 40;
 
-            let newWid = (listWid + listMargin) * newListCount - listMargin + 'px';
-            workList.style.width = newWid;
-        }
-        function setInitialPos(){
-            let initialTranslateValue = -(listWid + listMargin) * listCount;
-            workList.style.transform = 'translate('+initialTranslateValue+'px,45%)';
-            if(mobile){
-                workList.style.transform = 'translate('+initialTranslateValue+'px,65%)';
-            }
-        }
-
-        workList.addEventListener('mousewheel',function(e){
-            if(e.wheelDelta > 0){
-                //up
-                try{move = el.previousElementSibling.offsetLeft;
-                }
-                catch{
-                    moveSlide(move - 1);
-                }
-            }else{
-                //down
-                try{move = el.nextElementSibling.offsetLeft;
-                }
-                catch{
-                    moveSlide(move + 1);
-                }
-                finally{}
-            }
-        });
-
-        nextBtn.addEventListener('click',function(){
-            moveSlide(move + 1);
-        })
-        prevBtn.addEventListener('click',function(){
-            moveSlide(move - 1);
-        })
-
-        function moveSlide(num){
-            workList.style.left = -num * (listWid + listMargin) + 'px';
-            move = num;
-
-            if(move == listCount || move == -listCount){
-                setTimeout(function(){
-                    workList.classList.remove('moveAni');
-                    workList.style.left = '0px';
-                    move = 0;
-                }, 500);
-                setTimeout(function(){
-                    workList.classList.add('moveAni');
-                }, 600);
-            }
-        }
-
-//포폴 팝업
-    for(var i = 0; i< contentsData.length; i++){
-        $(".work_list li").on("click", function(event) {
-            var thisNo = $(this).attr('class');
-
-            setTimeout(function() {
-                $(".detail_modal").eq(thisNo - 1).show(250);
-                $("body").append('<div class="backon"></div>');
-
-                function scrollDisable(){
-                    $('body, html').addClass('hidden').on('scroll touchmove mousewheel', function(e){
+                $('.work_list').hover(function(){
+                    bodyTag.style.overflow = "hidden";
+                    document.addEventListener('scroll mousewheel',function(e){
                         e.preventDefault();
-                    });
+                })
+                },function(){
+                    bodyTag.style.overflow = "auto";
+                    document.addEventListener('scroll mousewheel',function(e){
+                        e.preventDefault();
+                })
+                });
+
+
+                makeClone();
+                function makeClone(){
+                    for(let i=0; i<listCount; i++){
+                        let cloneList = workListItem[i].cloneNode(true);
+                        workList.appendChild(cloneList);
+                    }
+                    for(let i = listCount -1; i >=0; i-- ){
+                        let cloneList = workListItem[i].cloneNode(true);
+                        workList.prepend(cloneList);
+                    }
+                    updateWid(); //클론한 넓이값
+                    setInitialPos(); //중간으로 이동
+                    setTimeout(function(){
+                        workList.classList.add('moveAni');
+                    }, 100);
                 }
-                scrollDisable();
-            },200);
-        });
-        break;
-    }
+                function updateWid(){
+                    let currentList = document.querySelectorAll('.work_list li');
+                    let newListCount = currentList.length;
 
-    $("body").on("click", function(event) {
-        if(event.target.className == 'closeBtn' || event.target.className == 'backon'){
-            $(".detail_modal").hide(250);
-            $(".backon").remove();
+                    let newWid = (listWid + listMargin) * newListCount - listMargin + 'px';
+                    workList.style.width = newWid;
+                }
+                function setInitialPos(){
+                    let initialTranslateValue = -(listWid + listMargin) * listCount;
+                    workList.style.transform = 'translate('+initialTranslateValue+'px,45%)';
+                }
 
-            function scrollAble(){
-                $('body, html').removeClass('hidden').off('scroll touchmove mousewheel');
+                workList.addEventListener('mousewheel',function(e){
+                    if(e.wheelDelta > 0){
+                        //up
+                        try{move = el.previousElementSibling.offsetLeft;
+                        }
+                        catch{
+                            moveSlide(move - 1);
+                        }
+                    }else{
+                        //down
+                        try{move = el.nextElementSibling.offsetLeft;
+                        }
+                        catch{
+                            moveSlide(move + 1);
+                        }
+                        finally{}
+                    }
+                });
+
+                // nextBtn.addEventListener('click',function(){
+                //     moveSlide(move + 1);
+                // })
+                // prevBtn.addEventListener('click',function(){
+                //     moveSlide(move - 1);
+                // })
+
+                function moveSlide(num){
+                    workList.style.left = -num * (listWid + listMargin) + 'px';
+                    move = num;
+
+                    if(move == listCount || move == -listCount){
+                        setTimeout(function(){
+                            workList.classList.remove('moveAni');
+                            workList.style.left = '0px';
+                            move = 0;
+                        }, 500);
+                        setTimeout(function(){
+                            workList.classList.add('moveAni');
+                        }, 600);
+                    }
+                }
+            },1000);
+        }else if (matchMedia("all and (max-width:767px)") || mobile){
+            console.log('모바일 버전입니다.')
+            $(".moreBtnTxt").on("click", function () {
+                load('.slideArea', '4', '.moreBtnTxt');
+            })
+
+            function load(id, cnt, btn) {
+                var girls_list = id + ".listItem:not(.onLoad)";
+                var girls_length = $(girls_list).length;
+                var girls_total_cnt;
+
+                if (cnt < girls_length) {
+                    girls_total_cnt = cnt;
+                } else {
+                    girls_total_cnt = girls_length;
+                    $('.moreBtn').hide()
+                }
+                $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("onLoad");
+                $("#work").css({"height":"100%"});
+                $(".work_list").css({"height":"auto"});
             }
-                scrollAble();
-            }
+        }
+        //포폴 팝업
+        for(var i = 0; i< contentsData.length; i++){
+            $(".work_list li").on("click", function(event) {
+                var thisNo = $(this).attr('class').replace(/[^0-9]/g,'');
+
+                setTimeout(function() {
+                    $(".detail_modal").eq(thisNo - 1).show(250);
+                    $("body").append('<div class="backon"></div>');
+
+                    function scrollDisable(){
+                        $('body, html').addClass('hidden').on('scroll touchmove mousewheel', function(e){
+                            e.preventDefault();
+                        });
+                    }
+                    scrollDisable();
+                },200);
+            });
+            break;
+        }
+
+        $("body").on("click", function(event) {
+            if(event.target.className == 'closeBtn' || event.target.className == 'backon'){
+                $(".detail_modal").hide(250);
+                $(".backon").remove();
+
+                function scrollAble(){
+                    $('body, html').removeClass('hidden').off('scroll touchmove mousewheel');
+                }
+                    scrollAble();
+                }
         });
-    },1000);
-//success끝
+    //success끝
     }
 });
