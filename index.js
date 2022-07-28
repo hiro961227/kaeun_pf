@@ -206,7 +206,7 @@ $.ajax({
         }
 
 // 클론 및 가로스크롤
-        if(matchMedia("screen and (min-width:768px)")){
+        if(!mobile){
             console.log('PC 버전입니다.')
             setTimeout(function(){
                 let workList = document.querySelector('.work_list');
@@ -299,7 +299,7 @@ $.ajax({
                     }
                 }
             },1000);
-        }else if (matchMedia("all and (max-width:767px)") || mobile){
+        }else if (mobile){
             console.log('모바일 버전입니다.')
             $(".moreBtnTxt").on("click", function () {
                 load('.slideArea', '4', '.moreBtnTxt');
