@@ -712,13 +712,13 @@ progress::-webkit-progress-value{
         height: 12px;
     }
     .detail_modal .prevBtn {
-        top: 34%;
-        left: 5%;
-        transform: translate(-5%,-34%) rotate(-135deg);
+        top: 38%;
+        left: 3%;
+        transform: translate(-3%,-38%) rotate(-135deg);
     }
     .detail_modal .nextBtn {
-        top: 34%;
-        right: 5%;
-        transform: translate(-5%,-34%) rotate(45deg);
+        top: 38%;
+        right: 3%;
+        transform: translate(-3%,-38%) rotate(45deg);
     }
 }
