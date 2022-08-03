@@ -124,8 +124,8 @@ $.ajax({
                 var codeImgSrc = contentsData[i].codeImgSrc;
                 var codeTxt = contentsData[i].codeTxt;
 
+                //리스트
                 if(no <= contentsData.length + 1){
-                    //리스트
                     if(6 < contentsData[i].no){
                         workListArea += "<li class='"+no+"listItem'><div class='list_img' style='background-image: url("+imgSrc+");'></div>"
                         workListArea += "<p class='list_name'>"+title+"</p></li>";
@@ -137,7 +137,8 @@ $.ajax({
                     $('ul.work_list').append(workListArea);
                 }
 
-                modalArea = "<div id='PF_popup' class='detail_modal no_"+no+"'><div class='closeBtn'></div><div class='detail_main_cont'>";
+                //팝업
+                modalArea = "<div id='PF_popup' class='detail_modal no_"+no+"'><div class='prevBtn'></div><div class='closeBtn'></div><div class='detail_main_cont'>";
                 modalArea += "<h2>"+title+"</h2>";
                 modalArea += "<div class='work_main'><div class='clearFix'><div class='fl work_event'>";
                 modalArea += "<div class='mokup_img'><div class='mokup_img_top' style='background-image: url("+imgSrc+");'><img src='./img/com_imac_img.png'></div>";
@@ -198,7 +199,7 @@ $.ajax({
                     modalArea += "<p>"+codeTxt+"</p>";
                     modalArea += "</div></li>";
                 }
-                modalArea += "</div></li></ul></div></div></div></div></div>";
+                modalArea += "</div></li></ul></div></div></div><div class='nextBtn'></div></div></div>";
 
                 $('.work_detail').append(modalArea);
             }
@@ -337,6 +338,20 @@ $.ajax({
                     }
                     scrollDisable();
                 },200);
+
+                $('.prevBtn').on('click',function(){
+                    thisNo--;
+
+                    $(".detail_modal").eq(thisNo).show();
+                    $(".detail_modal").eq(thisNo +1).hide();
+                })
+                $('.nextBtn').on('click',function(){
+                    thisNo++;
+
+                    $(".detail_modal").eq(thisNo).show();
+                    $(".detail_modal").eq(thisNo -1).hide();
+                })
+
             });
             break;
         }
