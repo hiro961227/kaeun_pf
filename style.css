@@ -78,9 +78,11 @@ body::-webkit-scrollbar{display: none;}
 }
 
 .its_me .my_photo{
-    width:250px;
+    width:250px; height: auto;
+    overflow: hidden;
     animation: circleSize2 .8s ease-in-out forwards;
 }
+.its_me .my_photo img{max-width: unset;}
 
 .its_me .hello{
     width: 100%;
@@ -168,6 +170,22 @@ body::-webkit-scrollbar{display: none;}
     50%{transform: scale(1.2);}
     100%{transform: scale(1);}
 }
+
+
+
+
+.its_me .my_photo img:hover {
+    transform: translateX(0);
+    height: auto;
+  }
+  .its_me .my_photo img:hover { animation: move-use-area .8s steps(6) infinite; }
+
+  @keyframes move-use-area {
+    to {transform: translateX(-100%)}
+  }
+
+
+
 /* skills에서 고정 */
 .its_me.stop{
     position: absolute;
@@ -559,6 +577,9 @@ progress::-webkit-progress-value{
     .its_me.in_about .my_photo {
         width: 140px !important;
         margin-right: 1.2vw;
+    }
+    .its_me .my_photo img {
+        max-width: 600%;
     }
     .its_me.in_about .hello {
         display: inline-block;
