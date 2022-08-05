@@ -470,17 +470,17 @@ progress::-webkit-progress-value{
 .link_btn_area{
     display: flex;
     justify-content: center;
-    padding-top: 20px;
+    padding-top: 1.041666vw;
 }
 .link_btn_area li{
     margin-right:2.60415vw;
 }
 .link_btn_area li:last-child{margin-right: 0;}
 .link_btn_area li a{
-    font-size: 1.8rem;
+    font-size: 0.9375vw;
     color:#fff;
     font-weight: bold;
-    padding:10px 20px;
+    padding:.5208333vw 1.041665vw;
     background-color: #d1b1a2;
     transition: .3s;
 }
