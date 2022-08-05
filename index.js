@@ -255,7 +255,7 @@ $.ajax({
                 }
                 function setInitialPos(){
                     let initialTranslateValue = -(listWid + listMargin) * listCount;
-                    workList.style.transform = 'translate('+initialTranslateValue+'px,45%)';
+                    workList.style.transform = 'translate('+initialTranslateValue+'px,-50%)';
                 }
 
                 workList.addEventListener('mousewheel',function(e){
