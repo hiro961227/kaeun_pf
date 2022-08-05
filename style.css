@@ -347,7 +347,7 @@ progress::-webkit-progress-value{
     justify-content: flex-start;
     position: absolute;
     left: 0;
-    top: 50%;
+    top: 55%;
 }
 .work_list.moveAni{
     transition: .5s ease-out;
